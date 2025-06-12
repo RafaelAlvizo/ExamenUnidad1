@@ -21,7 +21,7 @@ class RectanguloActivity : AppCompatActivity() {
         val btnRegresar = findViewById<Button>(R.id.btnRegresar)
         val btnLimpiar = findViewById<Button>(R.id.btnLimpiar)
 
-        tvNombre.text = "Mi nombre es: $nombre"
+        tvNombre.text = "Mi nombre es $nombre"
 
         btnCalcular.setOnClickListener {
             val base = etBase.text.toString().toDoubleOrNull()

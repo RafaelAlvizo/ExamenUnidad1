@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-//Pongo comentario para intentar hacer un commit
+// Esta es la actividad principal donde el usuario ingresa su nombre.
+// Si deja el campo vacío, se le pedirá que lo llene antes de continuar.
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,10 +20,17 @@ class MainActivity : AppCompatActivity() {
         val btnSalir = findViewById<Button>(R.id.btnSalir)
 
         btnEntrar.setOnClickListener {
-            val nombre = etNombre.text.toString()
-            val intent = Intent(this, RectanguloActivity::class.java)
-            intent.putExtra("nombre", nombre)
-            startActivity(intent)
+            val nombre = etNombre.text.toString().trim()
+
+            if (nombre.isEmpty()) {
+                // Mostrar mensaje si el campo está vacío
+                Toast.makeText(this, "Por favor ingresa tu nombre", Toast.LENGTH_SHORT).show()
+            } else {
+                // Continuar si el nombre es válido
+                val intent = Intent(this, RectanguloActivity::class.java)
+                intent.putExtra("nombre", nombre)
+                startActivity(intent)
+            }
         }
 
         btnSalir.setOnClickListener {
